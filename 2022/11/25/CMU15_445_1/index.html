@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"saemyte.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"saemyte.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="相关资源:  CMU15-445(2020)课程主页  Bustub2020  PS:记录做这个作业踩过的那些坑~ 1.环境配置  首先需要一个Linux环境，官方推荐Ubuntu20.04&#x2F;Ubuntu22.04。 1）下载bustub仓库代码  踩坑① 因为CMU15-445(2022)的课程还没有更完，所以这里做2020年的project。但是2020年课程主页的project文档">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMU15-445(2020) project1 C++ Primer">
-<meta property="og:url" content="http://saemyte.github.io/2022/11/25/hello-world/index.html">
+<meta property="og:url" content="http://saemyte.github.io/2022/11/25/CMU15_445_1/index.html">
 <meta property="og:site_name" content="SaeMyte">
 <meta property="og:description" content="相关资源:  CMU15-445(2020)课程主页  Bustub2020  PS:记录做这个作业踩过的那些坑~ 1.环境配置  首先需要一个Linux环境，官方推荐Ubuntu20.04&#x2F;Ubuntu22.04。 1）下载bustub仓库代码  踩坑① 因为CMU15-445(2022)的课程还没有更完，所以这里做2020年的project。但是2020年课程主页的project文档">
 <meta property="og:locale" content="zh_CN">
@@ -36,7 +36,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://saemyte.github.io/img/makeError1.png">
 
-<link rel="canonical" href="http://saemyte.github.io/2022/11/25/hello-world/">
+<link rel="canonical" href="http://saemyte.github.io/2022/11/25/CMU15_445_1/">
 
 
 <script id="page-configurations">
@@ -159,7 +159,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://saemyte.github.io/2022/11/25/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://saemyte.github.io/2022/11/25/CMU15_445_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/rabbit.png">
@@ -222,7 +222,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://saemyte.github.io/2022/11/25/hello-world/" title="CMU15-445(2020) project1 C++ Primer">http://saemyte.github.io/2022/11/25/hello-world/</a>
+    <a href="http://saemyte.github.io/2022/11/25/CMU15_445_1/" title="CMU15-445(2020) project1 C++ Primer">http://saemyte.github.io/2022/11/25/CMU15_445_1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -354,7 +354,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Tonia</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
         
@@ -376,7 +376,7 @@
 <script src="/js/utils.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
