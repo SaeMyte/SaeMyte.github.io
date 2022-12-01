@@ -166,7 +166,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/11/25/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2022/11/25/hello-world/" class="post-title-link" itemprop="url">CMU15-445(2020) project1 C++ Primer</a>
         </h2>
 
         <div class="post-meta">
@@ -178,6 +178,13 @@
 
               <time title="创建时间：2022-11-25 16:35:15" itemprop="dateCreated datePublished" datetime="2022-11-25T16:35:15+08:00">2022-11-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-01 11:26:28" itemprop="dateModified" datetime="2022-12-01T11:26:28+08:00">2022-12-01</time>
+              </span>
 
           
 
@@ -190,20 +197,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+          <p>相关资源:<br>  <a target="_blank" rel="noopener" href="https://15445.courses.cs.cmu.edu/fall2020/project0/">CMU15-445(2020)课程主页</a><br>  <a target="_blank" rel="noopener" href="https://github.com/SaeMyte/CMU15-445">Bustub2020</a><br>  PS:记录做这个作业踩过的那些坑~</p>
+<h2 id="1-环境配置"><a href="#1-环境配置" class="headerlink" title="1.环境配置"></a>1.环境配置</h2><p>  首先需要一个Linux环境，官方推荐Ubuntu20.04&#x2F;Ubuntu22.04。</p>
+<h3 id="1）下载bustub仓库代码"><a href="#1）下载bustub仓库代码" class="headerlink" title="1）下载bustub仓库代码"></a>1）下载bustub仓库代码</h3><p>  <strong>踩坑①</strong> 因为CMU15-445(2022)的课程还没有更完，所以这里做2020年的project。但是2020年课程主页的project文档，bustub链接到的是2022年的，每年CMU的课程是有更新的。所以这里注意得下载2020年的仓库。<a target="_blank" rel="noopener" href="https://github.com/SaeMyte/CMU15-445">Bustub2020</a><br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/SaeMyte/CMU15-445.git</span><br></pre></td></tr></table></figure></p>
+<h3 id="2）安装bustub的相关包"><a href="#2）安装bustub的相关包" class="headerlink" title="2）安装bustub的相关包"></a>2）安装bustub的相关包</h3><p>  参考bustub官方文档<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo build_support/packages.sh</span><br></pre></td></tr></table></figure><br>  <strong>踩坑②</strong>这里我clone了这个仓库，也有这个文件夹，但是一直提示 command not found.但是之前装过2022年bustub也配置了相关的包，所以这里没管，也不知道为什么<br>  接下来安装这个系统。这里某人给我讲了下cmake和make命令。（因为是小白很菜）<br>  Linux下gcc编译，如果是多个文件（针对于一个比较大的系统），内在逻辑比较复杂，就需要用gcc逐个编译。因此就产生了makefile，它告诉计算机我怎么执行这么多的源文件。但是写这个makefile也是很麻烦的，所以就出现了cmake这个工具。cmake就是根据一个CMakeLists.txt文件，来产生makefile交给make，而这个CMakeLists.txt文件的编写就不那么复杂，我们可以更容易操作一些。<br>  所以就是CMakeLists.txt–&gt;cmake工具–&gt;makefile–&gt;make工具–&gt;计算机<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir build</span><br><span class="line">$ cd build</span><br><span class="line">$ cmake ..</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure><br>  <strong>踩坑③</strong><br>  <img src="/img/makeError1.png" alt="github被墙"><br>  出现上面这个因为国内网络被墙，这里没有在Linux中设置代理，所以就是反复输入这个命令，总有一次能成功。<br>  <strong>踩坑④</strong><br>  <img src="/img/makeError2.png" alt="google库更改"><br>  gllgletest的分支已经从master变成main了，所以这里需要在本地项目bustub-public&#x2F;build-support中把gtest_CMakeLists.txt.in文件里的GIT_TAG从master改成main，就好了。<br>  <strong>到这里我们project1的环境就配置好啦！😊</strong></p>
+<h2 id="2-写代码咯"><a href="#2-写代码咯" class="headerlink" title="2.写代码咯"></a>2.写代码咯</h2>
       
     </div>
 
@@ -289,6 +287,10 @@
           <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
