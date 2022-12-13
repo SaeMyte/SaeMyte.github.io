@@ -16,8 +16,120 @@
       </tags>
   </entry>
   <entry>
-    <title>test</title>
-    <url>/2022/11/25/test/</url>
-    <content><![CDATA[]]></content>
+    <title>查找排序内容总结</title>
+    <url>/2022/11/25/%E6%8E%92%E5%BA%8F%E5%86%85%E5%AE%B9%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h2 id="异或查找"><a href="#异或查找" class="headerlink" title="异或查找"></a>异或查找</h2><h3 id="异或运算的性质"><a href="#异或运算的性质" class="headerlink" title="异或运算的性质"></a>异或运算的性质</h3><pre><code>0 ^ N = N     N ^ N = 0
+</code></pre>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><ol>
+<li><p>利用异或做两个数的交换。</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a = a^b; </span><br><span class="line">b = a^b;  </span><br><span class="line">a = a^b;  </span><br></pre></td></tr></table></figure></li>
+<li><p>一个数组中只有一个一个数出现了奇数词，利用异或查找这个数。</p>
+</li>
+<li><p>一个数组中有两个数出现了奇数次，其他都出现了偶数次，找到这两个数。(时间复杂度O(n),空间复杂度O(1))</p>
+<p>两个不同的数进行异或，二进制位上一定有一位是不为0的，找到最低的这一位，将它和数组中其他出现了偶数次的数进行异或，将剩下的数分为了这一位为0和为1的两批，再分为进行异或操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">两个奇数次的数，从前往后遍历一次异或结果为  c1 = a ^ b</span><br><span class="line">c1的二进制数上至少有一位不为0,假设是第八位，则a和b在第八位上一定是不一样的。</span><br><span class="line">数组中可以分为两类：a和b分在了两个集合中</span><br><span class="line">1）第八位是1： 出现偶数次的数， a</span><br><span class="line">2）第八位是0   出现偶数次的数， b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">def FindDigtal(nums):</span><br><span class="line">    eor = 0</span><br><span class="line">    for data in nums:</span><br><span class="line">        eor = eor ^ data</span><br><span class="line">    # eor必然有一个位置为1，选择最低为的1</span><br><span class="line">    rightOne = eor &amp; (-eor) #负数是补码存储，也就是~eor+1 ， 获取lowbits[一个数最右侧的1]</span><br><span class="line">    onlyOne = 0  # eor&#x27;</span><br><span class="line">    for data in nums:</span><br><span class="line">        if data &amp; rightOne == 0:</span><br><span class="line">            onlyOne = onlyOne ^ data</span><br><span class="line">    a = onlyOne</span><br><span class="line">    b = eor ^ onlyOne</span><br><span class="line">    return a, b</span><br><span class="line">if __name__==&#x27;__main__&#x27;:</span><br><span class="line">    nums = [1,5,6,5,1,7,7,7]</span><br><span class="line">    print(FindDigtal(nums))</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><pre><code>注意分界条件~~~
+</code></pre>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p> <img src="/img/insertsort.jpg" alt="插入排序"><br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def InsertSort(nums):</span><br><span class="line">   for i in range(0, len(nums)):</span><br><span class="line">       for j in range(i, 0, -1):</span><br><span class="line">           if nums[j] &lt; nums[j-1]:</span><br><span class="line">               t = nums[j] </span><br><span class="line">               nums[j] = nums[j-1]</span><br><span class="line">               nums[j-1] = t</span><br><span class="line">           else:</span><br><span class="line">               break</span><br><span class="line">   return nums</span><br></pre></td></tr></table></figure></p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p><img src="/img/MergeSort.jpg" alt="归并排序"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def MergeSort(nums, L, R):</span><br><span class="line">    if L == R:</span><br><span class="line">        return nums  #数组中只有一个元素，不需要再排序</span><br><span class="line">    mid = L +((R-L)&gt;&gt;1)  #特殊的写法，防溢出</span><br><span class="line">    MergeSort(nums, L, mid)</span><br><span class="line">    MergeSort(nums, mid+1, R)</span><br><span class="line">    Merge(nums, L, mid, R)</span><br><span class="line"></span><br><span class="line">def Merge(nums, L, mid, R):</span><br><span class="line">    #准备一个辅助空间</span><br><span class="line">    nums1 = []</span><br><span class="line">    i = L</span><br><span class="line">    j = mid + 1</span><br><span class="line">    while i &lt;= mid and j &lt;= R:</span><br><span class="line">        if nums[i] &lt;= nums[j]:</span><br><span class="line">            nums1.append(nums[i])</span><br><span class="line">            i += 1</span><br><span class="line">        else: </span><br><span class="line">            nums1.append(nums[j])</span><br><span class="line">            j += 1</span><br><span class="line">    if i &gt; mid:</span><br><span class="line">        for data in nums[j:R+1]:</span><br><span class="line">            nums1.append(data)</span><br><span class="line">    if j &gt; R:</span><br><span class="line">        for data in nums[i: mid+1]:</span><br><span class="line">            nums1.append(data)</span><br><span class="line">    for i in range(0, len(nums1)):</span><br><span class="line">        nums[L+i] = nums1[i]</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>随机选择一个数，放到数组最后来作为划分标准，数组前半段是小于划分值得数，中间是等于划分值的数，后面是大于划分值得数，再将划分值放在右区域的第一个位置上，右区域指针+1，继续左区域和右区域的递归划分。</p>
+<p><img src="/img/quicksort.jpg" alt="快速排序"><br>  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import random</span><br><span class="line">def QuickSort(nums, L, R):</span><br><span class="line">#忘了最重要的条件,L&lt;R</span><br><span class="line">if L &lt; R:</span><br><span class="line">    #产生一个[L,R]范围内的随机数</span><br><span class="line">    mid = random.randint(L, R)</span><br><span class="line">    #将这个数和数组最后一个数做交换</span><br><span class="line">    nums[R], nums[mid] = nums[mid], nums[R]</span><br><span class="line">    #进行划分使得它符合荷兰国旗，&lt;的在左边，等于的在中间，大于的在右边</span><br><span class="line">    border = Partition(nums, L, R)  #存储等于区域的左边界和右边界</span><br><span class="line">    #递归进行左边区域和右边区域的</span><br><span class="line">    QuickSort(nums, L, border[0]-1)</span><br><span class="line">    QuickSort(nums, border[1]+1, R)</span><br><span class="line"></span><br><span class="line">def Partition(nums, L, R): #left左区域的下一个指针，right右区域的前一个指针，返回一个数组是划分值等于区域的范围</span><br><span class="line">    i = L</span><br><span class="line">    left = L</span><br><span class="line">    right = R - 1   </span><br><span class="line"></span><br><span class="line">    while i&lt;= right:</span><br><span class="line">        if nums[i] &lt; nums[R]:</span><br><span class="line">            nums[left], nums[i] = nums[i], nums[left]</span><br><span class="line">            left += 1</span><br><span class="line">            i += 1</span><br><span class="line">        elif nums[i] &gt; nums[R] :</span><br><span class="line">            nums[right], nums[i] = nums[i],nums[right]</span><br><span class="line">            right -= 1</span><br><span class="line">        else:</span><br><span class="line">            i += 1</span><br><span class="line">    #再将划分值放在右区域的第一个位置上</span><br><span class="line">    nums[R], nums[right+1] = nums[right+1], nums[R]</span><br><span class="line">    return [left, right+1]  #等于区域的第一个元素    等于区域的最后一个元素</span><br></pre></td></tr></table></figure></p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>   堆是一个完全二叉树。</p>
+<h3 id="两个基本操作"><a href="#两个基本操作" class="headerlink" title="两个基本操作"></a>两个基本操作</h3><ol>
+<li><p>heapinsert</p>
+<p>保持一个堆是大根堆。</p>
+<p>当前待插入元素和它的父亲比较，如果比父亲大，则和父亲交换，如果比父亲小或者遍历到了头节点，则结束插入。</p>
+<p><img src="/img/heapinsert.jpg" alt="heapinsert"></p>
+</li>
+<li><p>heapify</p>
+<p>找到堆中的最大值，如何将它从堆中去掉。</p>
+<p> 将堆中最后一个元素放到头节点中，heapsize–； 再从头节点开始，在它左孩子和右孩子中选择一个最大值和头比较，如果头&gt; 最大值，最大值和头节点交换。继续换知道该节点不再有左孩子和右孩子或者节点比它的左孩子和右孩子大。</p>
+</li>
+</ol>
+<h3 id="堆排序算法"><a href="#堆排序算法" class="headerlink" title="堆排序算法"></a>堆排序算法</h3><p>先将一个数组整体变成大根堆，再依次将最大值去掉，即放到末尾，然后做heapify操作调整，直到heapsize等于0.<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def HeapSort(nums):</span><br><span class="line">    if len(nums) &lt; 2:</span><br><span class="line">        return</span><br><span class="line"></span><br><span class="line">    #依次进行heapinsert操作</span><br><span class="line">    for i in range(0, len(nums)):</span><br><span class="line">        HeapInsert(nums, i)</span><br><span class="line">    heapsize = len(nums)</span><br><span class="line">    #每次将最大值和末尾的数进行交换，将heapsize--,然后进行heapify操作调整</span><br><span class="line">    while heapsize &gt; 0:</span><br><span class="line">        nums[0], nums[heapsize-1] = nums[heapsize-1], nums[0]</span><br><span class="line">        heapsize = heapsize - 1</span><br><span class="line">        Heapify(nums, 0, heapsize)</span><br><span class="line"></span><br><span class="line">def HeapInsert(nums, i):  #将i位置上的数插入到堆中，使得其仍然是一个大根堆</span><br><span class="line">    while (i-1)/2 &gt;= 0 and nums[i] &gt; nums[int((i-1)/2)]:  #要注意这里的条件是(i-1)/2 &gt;=0，因为可以和头节点进行比较</span><br><span class="line">        nums[int((i-1)/2)], nums[i] = nums[i], nums[int((i-1)/2)]</span><br><span class="line">        i = int((i-1)/2)</span><br><span class="line"></span><br><span class="line">def Heapify(nums, i, heapsize):  #从数组i向下调整，且当前堆的大小为heapsize</span><br><span class="line">    #如果i没有左孩子和右孩子，则结束</span><br><span class="line">    left = 2*i+1</span><br><span class="line">    index = i</span><br><span class="line">    while left &lt; heapsize:  #右左孩子就一定有右孩子</span><br><span class="line">        #如果右孩子存在，选择左孩子和右孩子中较大的那个和i节点进行比较</span><br><span class="line">        right = left + 1</span><br><span class="line">        if right &lt; heapsize:</span><br><span class="line">            large = left if nums[left] &gt;= nums[right] else right</span><br><span class="line">        else:</span><br><span class="line">            large = left</span><br><span class="line">        #将最大值和i节点进行比较，如果较大的值等于i，则将两个数进行交换</span><br><span class="line">        if nums[large] &gt; nums[i]:</span><br><span class="line">            nums[large], nums[i] = nums[i], nums[large]</span><br><span class="line">            #下标下移</span><br><span class="line">            left = 2*large + 1</span><br><span class="line">        else:</span><br><span class="line">            break</span><br></pre></td></tr></table></figure></p>
+<h2 id="排序算法稳定性"><a href="#排序算法稳定性" class="headerlink" title="排序算法稳定性"></a>排序算法稳定性</h2><p>值相同的元素在排序后，位置的先后次序保持不变。</p>
+<p><img src="/img/%E7%A8%B3%E5%AE%9A%E6%80%A7.jpg" alt="稳定性说明"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th align="left">排序算法</th>
+<th align="right">稳定性</th>
+<th align="center">时间复杂度</th>
+<th>空间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">选择排序算法</td>
+<td align="right">不稳定</td>
+<td align="center">O(n^2</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td align="left">冒泡排序算法</td>
+<td align="right">稳定</td>
+<td align="center">O(n^2)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td align="left">插入排序算法</td>
+<td align="right">稳定</td>
+<td align="center">O(n^2)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td align="left">归并排序算法</td>
+<td align="right">稳定</td>
+<td align="center">O(nlogn)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td align="left">快速排序算法(随机快排)</td>
+<td align="right">不稳定</td>
+<td align="center">O(nlogn)</td>
+<td>O(logn)</td>
+</tr>
+<tr>
+<td align="left">堆排序算法</td>
+<td align="right">不稳定</td>
+<td align="center">O(nlogn)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td align="left">计数排序算法</td>
+<td align="right">稳定</td>
+<td align="center">–</td>
+<td>–</td>
+</tr>
+<tr>
+<td align="left">基数排序算法</td>
+<td align="right">稳定</td>
+<td align="center">–</td>
+<td>–</td>
+</tr>
+</tbody></table>
+<h3 id="常见的坑"><a href="#常见的坑" class="headerlink" title="常见的坑"></a>常见的坑</h3><ol>
+<li><p>归并排序的额外空间复杂度可以变为O(1)，可以使用内部缓存法，变了之后就不稳定了。</p>
+</li>
+<li><p>“原地归并排序”会让时间空间复杂度变为O(n^2)</p>
+</li>
+<li><p>快速排序可以做到稳定，但是十分难，空间复杂度会变为O(n)</p>
+</li>
+<li><p>目前没有找到时间复杂度O(nlogn)，空间复杂度为O(1),又稳定的排序算法。</p>
+</li>
+<li><p>题目： 奇数放在数组左边，偶数放在数组右边，要求原始相对次序不变。要求时间复杂度O(nlogn)，空间复杂度为O(1)，很难做到。</p>
+<p> 经典快排的Partition做不到稳定性，奇数偶数本质上也是一个0-1划分问题，但是做不到稳定性。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>刷题</tag>
+        <tag>work</tag>
+      </tags>
   </entry>
 </search>
